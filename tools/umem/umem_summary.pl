@@ -139,7 +139,7 @@ sub summary {
       print "\n\n";
     }
     my $allocs = 0;
-    print "                  bytes      allocs     bytes/alloc\n";
+    print "                  bytes      allocs     bytes/alloc\n" if $verbose;
     foreach my $size (keys %{$bystack->{$cs}}) {
       next if ($size eq "total");
       if($verbose) {
@@ -150,6 +150,6 @@ sub summary {
         printf("%9d %7d %6d %s\n", $bystack->{$cs}->{$size} * $size, $bystack->{$cs}->{$size}, $size, join(" <- ", @st[0..$depth]));
       }
     }
-    printf("  Total:  %13d    %8d\n\n\n", $bystack->{$cs}->{total}, $allocs);
+    printf("  Total:  %13d    %8d\n\n\n", $bystack->{$cs}->{total}, $allocs) if $verbose;
   }
 }
